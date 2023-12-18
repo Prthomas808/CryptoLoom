@@ -23,6 +23,7 @@
 		1D90429B2B30A3A100C25E3F /* ReusableSystemImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9042922B30A3A100C25E3F /* ReusableSystemImage.swift */; };
 		1D90429C2B30A3A100C25E3F /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9042932B30A3A100C25E3F /* ReusableView.swift */; };
 		1D90429D2B30A3A100C25E3F /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9042952B30A3A100C25E3F /* UIViewController+Ext.swift */; };
+		1D90429F2B30ABF000C25E3F /* CoinDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D90429E2B30ABF000C25E3F /* CoinDetailVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		1D9042922B30A3A100C25E3F /* ReusableSystemImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableSystemImage.swift; sourceTree = "<group>"; };
 		1D9042932B30A3A100C25E3F /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		1D9042952B30A3A100C25E3F /* UIViewController+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		1D90429E2B30ABF000C25E3F /* CoinDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				1D9042812B30901400C25E3F /* HomeVC.swift */,
+				1D90429E2B30ABF000C25E3F /* CoinDetailVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				1D9042852B3093F600C25E3F /* Coin.swift in Sources */,
 				1D90429C2B30A3A100C25E3F /* ReusableView.swift in Sources */,
 				1D90429B2B30A3A100C25E3F /* ReusableSystemImage.swift in Sources */,
+				1D90429F2B30ABF000C25E3F /* CoinDetailVC.swift in Sources */,
 				1D90428B2B30A2E500C25E3F /* CoinCell.swift in Sources */,
 				1D9042972B30A3A100C25E3F /* ReusableButton.swift in Sources */,
 				1D9042992B30A3A100C25E3F /* ReusableTextfield.swift in Sources */,

@@ -65,7 +65,10 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     self.collectionView.deselectItem(at: indexPath, animated: true)
-    print("Tapped")
+    let coin = self.coins[indexPath.row]
+    let vc = CoinDetailVC(coin: coin)
+    vc.title = coin.name
+    navigationController?.pushViewController(vc, animated: true)
   }
 }
 
