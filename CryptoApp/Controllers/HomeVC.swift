@@ -11,7 +11,7 @@ class HomeVC: UIViewController {
 
   // MARK: Properties
   private var collectionView: UICollectionView!
-  private let coins: [Coin] = Coin.getMockArray()
+  private let coins: [CoinModel] = CoinModel.getMockArray()
   
   // MARK: Lifecyle
   override func viewDidLoad() {
@@ -19,6 +19,7 @@ class HomeVC: UIViewController {
     view.backgroundColor = .systemBackground
     configureNavBar()
     configureCollectionView()
+    fetchData()
   }
   
   // MARK: Objc Functions
@@ -46,6 +47,15 @@ class HomeVC: UIViewController {
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     collectionView.frame = view.bounds
+  }
+  
+  private func fetchData() {
+    CryptoManager.shared.fetchCrypto { result in
+      switch result {
+      case .success(let coin): print("Coins have been fetched")
+      case .failure(let error): print(error.rawValue)
+      }
+    }
   }
 }
 

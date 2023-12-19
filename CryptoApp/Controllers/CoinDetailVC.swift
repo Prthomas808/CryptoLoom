@@ -10,7 +10,7 @@ import UIKit
 class CoinDetailVC: UIViewController {
 
   // MARK: Properties
-  private let coin: Coin
+  private let coin: CoinModel
   
   private var coinImageView = UIImageView()
   private var rankLabel = ReusableLabel(text: nil, fontSize: 18, weight: .light, color: .systemGreen, numberOfLines: 1)
@@ -28,7 +28,7 @@ class CoinDetailVC: UIViewController {
     configureCoinDetailConstraints()
   }
   
-  init(coin: Coin) {
+  init(coin: CoinModel) {
     self.coin = coin
     super.init(nibName: nil, bundle: nil)
   }
@@ -56,13 +56,12 @@ class CoinDetailVC: UIViewController {
     vStack.alignment = .leading
     vStack.translatesAutoresizingMaskIntoConstraints = false
     
-    rankLabel.text = "Rank: \(coin.cmcRank)"
-    priceLabel.text = "Price: \(coin.quote.USD.price)"
-    marketCapLabel.text = "Market Cap: \(coin.quote.USD.marketCap)"
-    
-    guard let maxSupply = coin.maxSupply else { return }
-    maxSupplyLabel.text = "Max Supply: \(maxSupply)"
-    
+    guard let rank = coin.marketCapRank else { return }
+    guard let marketCap = coin.marketCap else { return }
+    rankLabel.text = "Rank: \(rank)"
+    priceLabel.text = "Price: \(coin.currentPrice)"
+    marketCapLabel.text = "Market Cap: \(marketCap)"
+        
   }
 
   private func configureCoinDetailConstraints() {

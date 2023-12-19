@@ -12,14 +12,16 @@ class CoinCell: UICollectionViewCell {
   // MARK: Properties
   static let ReusableID = "CoinCell"
   
-  private(set) var coin: Coin!
+  private(set) var coin: CoinModel!
   private var coinImageView = UIImageView()
   private var coinLabel = ReusableLabel(text: "Bitcoin", fontSize: 18, weight: .semibold, color: .label, numberOfLines: 1)
+  
+  private var bgColors: [UIColor] = [.systemRed, .systemOrange.withAlphaComponent(0.3), .systemYellow, .systemGreen, .systemBlue, .systemIndigo, .systemPurple ]
   
   // MARK: Lifecyle
   override init(frame: CGRect) {
     super.init(frame: .zero)
-    self.backgroundColor = .systemGray6
+    self.backgroundColor = bgColors.randomElement()
     self.layer.cornerRadius = 20
     configureCoinCellProperties()
     configureCoinCellConstraitns()
@@ -37,7 +39,7 @@ class CoinCell: UICollectionViewCell {
     contentView.addSubview(coinImageView)
     coinImageView.contentMode = .scaleAspectFit
     coinImageView.image = UIImage(systemName: "bitcoinsign.circle.fill")
-    coinImageView.tintColor = .systemOrange
+    coinImageView.tintColor = UIColor(named: "AccentColor")
     coinImageView.translatesAutoresizingMaskIntoConstraints = false
     
     contentView.addSubview(coinLabel)
@@ -59,7 +61,7 @@ class CoinCell: UICollectionViewCell {
     ])
   }
   
-  public func configure(with coin: Coin) {
+  public func configure(with coin: CoinModel) {
     self.coin = coin
     
     self.coinLabel.text = coin.name
