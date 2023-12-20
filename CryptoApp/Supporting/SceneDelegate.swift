@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -20,6 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     window.rootViewController = navController
     self.window = window
     window.makeKeyAndVisible()
+    
+    SDImageCache.shared.config.maxDiskSize = 20000000
   }
 
   func sceneDidDisconnect(_ scene: UIScene) {

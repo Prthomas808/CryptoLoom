@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CoinCell: UICollectionViewCell {
     
@@ -14,9 +15,9 @@ class CoinCell: UICollectionViewCell {
   
   private(set) var coin: CoinModel!
   private var coinImageView = UIImageView()
-  private var coinLabel = ReusableLabel(text: "Bitcoin", fontSize: 18, weight: .semibold, color: .label, numberOfLines: 1)
+  private var coinLabel = ReusableLabel(text: "Bitcoin", fontSize: 18, weight: .semibold, color: .label, numberOfLines: 2)
   
-  private var bgColors: [UIColor] = [.systemRed, .systemOrange.withAlphaComponent(0.3), .systemYellow, .systemGreen, .systemBlue, .systemIndigo, .systemPurple ]
+  private var bgColors: [UIColor] = [.systemRed, .systemOrange.withAlphaComponent(0.5), .systemYellow.withAlphaComponent(0.5), .systemGreen, .systemBlue, .systemIndigo, .systemPurple ]
   
   // MARK: Lifecyle
   override init(frame: CGRect) {
@@ -38,11 +39,10 @@ class CoinCell: UICollectionViewCell {
   private func configureCoinCellProperties() {
     contentView.addSubview(coinImageView)
     coinImageView.contentMode = .scaleAspectFit
-    coinImageView.image = UIImage(systemName: "bitcoinsign.circle.fill")
-    coinImageView.tintColor = UIColor(named: "AccentColor")
     coinImageView.translatesAutoresizingMaskIntoConstraints = false
     
     contentView.addSubview(coinLabel)
+    coinLabel.lineBreakMode = .byWordWrapping
   }
   
   private func configureCoinCellConstraitns() {
@@ -57,7 +57,8 @@ class CoinCell: UICollectionViewCell {
     // coinImageView
     NSLayoutConstraint.activate([
       coinLabel.centerYAnchor.constraint(equalTo: coinImageView.centerYAnchor),
-      coinLabel.leadingAnchor.constraint(equalTo: coinImageView.trailingAnchor, constant: 10)
+      coinLabel.leadingAnchor.constraint(equalTo: coinImageView.trailingAnchor, constant: 10),
+      coinLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5)
     ])
   }
   
@@ -65,5 +66,9 @@ class CoinCell: UICollectionViewCell {
     self.coin = coin
     
     self.coinLabel.text = coin.name
+    
+    guard let coinImage = URL(string: coin.image) else { return }
+    coinImageView.sd_setImage(with: coinImage)
+    
   }
 }

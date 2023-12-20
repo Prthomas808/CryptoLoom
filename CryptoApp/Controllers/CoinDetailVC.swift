@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CoinDetailVC: UIViewController {
 
@@ -31,6 +32,8 @@ class CoinDetailVC: UIViewController {
   init(coin: CoinModel) {
     self.coin = coin
     super.init(nibName: nil, bundle: nil)
+    guard let coinImage = URL(string: coin.image) else { return }
+    coinImageView.sd_setImage(with: coinImage)
   }
   
   required init?(coder: NSCoder) {
@@ -44,8 +47,6 @@ class CoinDetailVC: UIViewController {
   
   private func configureCoinDetailProperties() {
     view.addSubview(coinImageView)
-    coinImageView.image = UIImage(systemName: "bitcoinsign.circle.fill")
-    coinImageView.tintColor = .systemOrange
     coinImageView.translatesAutoresizingMaskIntoConstraints = false
     
     vStack = UIStackView(arrangedSubviews: [rankLabel, marketCapLabel, priceLabel, maxSupplyLabel])
@@ -53,31 +54,28 @@ class CoinDetailVC: UIViewController {
     vStack.axis = .vertical
     vStack.spacing = 12
     vStack.distribution = .fill
-    vStack.alignment = .leading
+    vStack.alignment = .center
     vStack.translatesAutoresizingMaskIntoConstraints = false
     
     guard let rank = coin.marketCapRank else { return }
     guard let marketCap = coin.marketCap else { return }
-    rankLabel.text = "Rank: \(rank)"
+    rankLabel.text = "Rank: \(Int(rank))"
     priceLabel.text = "Price: \(coin.currentPrice)"
     marketCapLabel.text = "Market Cap: \(marketCap)"
-        
   }
 
   private func configureCoinDetailConstraints() {
     // coinImageView Constraints
     NSLayoutConstraint.activate([
       coinImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-      coinImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+      coinImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       coinImageView.heightAnchor.constraint(equalToConstant: 150),
       coinImageView.widthAnchor.constraint(equalToConstant: 150),
     ])
     
     NSLayoutConstraint.activate([
-      vStack.centerYAnchor.constraint(equalTo: coinImageView.centerYAnchor),
-      vStack.leadingAnchor.constraint(equalTo: coinImageView.trailingAnchor, constant: 10),
-      vStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
+      vStack.bottomAnchor.constraint(equalTo: coinImageView.bottomAnchor, constant: 125),
+      vStack.centerXAnchor.constraint(equalTo: view.centerXAnchor)
     ])
   }
-  
 }

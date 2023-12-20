@@ -15,7 +15,7 @@ class CryptoManager {
   let baseURL = "https://pro-api.coinmarketcap.com"
 
   func fetchCrypto(completion: @escaping(Result<[CoinModel], CrytpoError>) -> Void) {
-    let endpoint = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5&page=1&price_change_percentage=24g&locale=en"
+    let endpoint = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&price_change_percentage=24g&locale=en"
     
     guard let url = URL(string: endpoint) else {
       completion(.failure(.invalidURL))
@@ -43,7 +43,6 @@ class CryptoManager {
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         let coin = try decoder.decode([CoinModel].self, from: data)
         completion(.success(coin))
-//        let result = try JSONSerialization.jsonObject(with: data)
       } catch {
         completion(.failure(.unableToComplete))
       }
